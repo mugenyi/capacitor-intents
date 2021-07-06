@@ -11,5 +11,5 @@ export interface CapacitorIntentsPlugin {
 
   unregisterBroadcastReceiver(options: {id: string}): Promise<void>;
 
-  sendBroadcastIntent(options: {action: string; value: {[key: string]: any}}): Promise<void>;
+  sendBroadcastIntent(options: {uri: string;}): Promise<void>;
 }

@@ -20,7 +20,7 @@ export class CapacitorIntentsWeb extends WebPlugin implements CapacitorIntentsPl
   }
 
   //@ts-ignore
-  async sendBroadcastIntent(options: {action: string; value: {[key: string]: any}}): Promise<void> {
+  async sendBroadcastIntent(options: {uri: string;}): Promise<void> {
     Promise.reject('Feature not implemented in web.');
   }
 }

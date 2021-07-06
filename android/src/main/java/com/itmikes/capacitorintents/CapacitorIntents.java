@@ -6,6 +6,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,11 +54,12 @@ public class CapacitorIntents extends Plugin {
 
   @PluginMethod
   public void sendBroadcastIntent(PluginCall call) {
-    String actionToUse = call.getString("action");
-    JSObject passingData = call.getObject("value");
-    Intent intended = new Intent(actionToUse);
-    intended.putExtra("value", passingData.toString());
-    this.getContext().sendBroadcast(intended);
+    Uri uri = Uri.parse( call.getString("uri"));
+    Intent intent = new Intent(Intent.ACTION_ATTACH_DATA);
+    intent.setDataAndType(uri, "image/*");
+    intent.putExtra("mimeType", "image/*");
+    startActivityForResult(Intent.createChooser(intent, "Set image as"), 200);
+
   }
 
   private void requestBroadcastUpdates(final PluginCall call)
